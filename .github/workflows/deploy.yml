@@ -19,6 +19,15 @@ jobs:
       - name: Descargar el código del repositorio
         uses: actions/checkout@v4
 
+      - name: Rayos X al Token OIDC
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const token = await core.getIDToken('sts.amazonaws.com');
+            const payload = Buffer.from(token.split('.')[1], 'base64').toString();
+            console.log("=== LO QUE GITHUB ENVÍA A AWS ===");
+            console.log(JSON.parse(payload));
+
       - name: Autenticarse en AWS con OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
