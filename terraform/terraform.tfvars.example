@@ -4,4 +4,4 @@ github_repo_name    = "MarcoAAvila/portfolio-web"
 s3_bucket_name      = "marcoaavila-portfolio-web"
 dynamodb_table_name = "portfolio-visitor-counter"
 monthly_budget_usd  = 1.0
-email_for_budgets   = "----"   # <-- Cambia esto
+email_for_budgets   = "----"

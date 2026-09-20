@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'web/**'
-  workflow_dispatch: # Permite ejecutar el Action manualmente desde GitHub
+  workflow_dispatch: 
 
 permissions:
   id-token: write 
@@ -22,7 +22,7 @@ jobs:
       - name: Autenticarse en AWS con OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::625738166197:role/portfolio-github-actions-deploy
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-west-1
 
       - name: Subir archivos web a S3
