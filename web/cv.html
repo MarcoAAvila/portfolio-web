@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Marco Avila | Cloud & Systems</title>
+  <meta name="description" content="Currículum Vitae de Marco Avila, técnico en ASIX especializado en Cloud Computing y arquitectura AWS.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0A0E14">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0E14'/%3E%3Ctext x='16' y='21' font-family='monospace' font-weight='700' font-size='15' fill='%23FF9900' text-anchor='middle'%3E%26gt;_%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       Design tokens — identical to main site
+    ============================================================ */
+    :root {
+      --bg-primary:    #0A0E14;
+      --bg-secondary:  #10151D;
+      --bg-tertiary:   #161C27;
+      --border-subtle: #202836;
+      --border-strong: #2E3849;
+      --text-primary:   #EAEEF5;
+      --text-secondary: #94A0B4;
+      --text-tertiary:  #5B6678;
+      --accent-orange:      #FF9900;
+      --accent-orange-dim:  #C97600;
+      --accent-blue:        #4C9EFF;
+      --accent-green:       #3ECF8E;
+      --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+      --font-body:    'Inter', 'Segoe UI', sans-serif;
+      --font-mono:    'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; }
+
+    ::selection { background: var(--accent-orange); color: var(--bg-primary); }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent-orange);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
+       Layout
+    ============================================================ */
+    .cv-shell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      margin-inline: auto;
+      width: 100%;
+      padding: 1.5rem 1.25rem 2rem;
+      gap: 1.25rem;
+    }
+
+    /* ============================================================
+       Top bar
+    ============================================================ */
+    .cv-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-topbar__left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.9rem;
+      transition: color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.15s var(--ease);
+    }
+    .back-link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      transform: translateX(-2px);
+    }
+
+    .cv-topbar__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cv-topbar__title span {
+      color: var(--accent-orange);
+    }
+
+    .cv-topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       Counter badge
+    ============================================================ */
+    .counter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      transition: border-color 0.3s var(--ease);
+    }
+    .counter-badge.is-loaded {
+      border-color: var(--accent-green);
+    }
+    .counter-badge__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+      flex-shrink: 0;
+      transition: background 0.3s var(--ease);
+    }
+    .counter-badge.is-loaded .counter-badge__dot {
+      background: var(--accent-green);
+      animation: pulse-dot 2.5s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+    .counter-badge__count {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       Download button
+    ============================================================ */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      background: var(--accent-orange);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s var(--ease), background 0.2s var(--ease);
+    }
+    .btn-download:hover { transform: translateY(-2px); background: var(--accent-orange-dim); }
+    .btn-download:active { transform: translateY(0); }
+
+    /* ============================================================
+       PDF viewer
+    ============================================================ */
+    .cv-viewer {
+      flex: 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-secondary);
+      position: relative;
+      min-height: 0;
+    }
+
+    .cv-viewer__iframe {
+      width: 100%;
+      height: 100%;
+      min-height: min(82vh, 900px);
+      border: none;
+      display: block;
+    }
+
+    /* Fallback shown when iframe fails (e.g. iOS Safari) */
+    .cv-viewer__fallback {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      height: 100%;
+      min-height: 300px;
+    }
+    .cv-viewer__fallback p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 360px;
+    }
+
+    /* ============================================================
+       Footer strip
+    ============================================================ */
+    .cv-footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      padding-top: 0.5rem;
+    }
+    .cv-footer a {
+      color: var(--accent-blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .cv-footer a:hover { color: var(--text-primary); }
+
+    /* ============================================================
+       Icon helper
+    ============================================================ */
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .icon--sm { width: 14px; height: 14px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- SVG icons (inline sprite) -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="ic-arrow-left" viewBox="0 0 24 24">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12,19 5,12 12,5"/>
+      </symbol>
+      <symbol id="ic-download" viewBox="0 0 24 24">
+        <line x1="12" y1="4" x2="12" y2="16"/>
+        <polyline points="7,11 12,16 17,11"/>
+        <line x1="5" y1="20" x2="19" y2="20"/>
+      </symbol>
+      <symbol id="ic-eye" viewBox="0 0 24 24">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="cv-shell">
+
+    <!-- Top bar -->
+    <div class="cv-topbar">
+      <div class="cv-topbar__left">
+        <a href="./index.html" class="back-link" aria-label="Volver al portfolio">
+          <svg class="icon" aria-hidden="true"><use href="#ic-arrow-left"/></svg>
+          Volver
+        </a>
+        <p class="cv-topbar__title">Marco Avila — <span>CV</span></p>
+      </div>
+
+      <div class="cv-topbar__actions">
+        <!-- Visitor counter — populated via API Gateway -->
+        <div class="counter-badge" id="counter-badge" aria-live="polite" aria-label="Visitas a este CV">
+          <span class="counter-badge__dot" aria-hidden="true"></span>
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#ic-eye"/></svg>
+          <span id="counter-label">cargando visitas…</span>
+        </div>
+
+        <a
+          href="./assets/CV_Avila_Neciosup_Marco.pdf"
+          download="CV_Marco_Avila.pdf"
+          class="btn-download"
+          aria-label="Descargar CV en PDF"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#ic-download"/></svg>
+          Descargar PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- PDF viewer -->
+    <div class="cv-viewer" id="cv-viewer">
+      <iframe
+        id="cv-iframe"
+        class="cv-viewer__iframe"
+        src="./assets/CV_Avila_Neciosup_Marco.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+        title="CV de Marco Avila en PDF"
+        aria-label="Vista previa del Currículum Vitae de Marco Avila"
+      ></iframe>
+
+      <!-- Shown only if the iframe fails (iOS Safari doesn't render PDFs inline) -->
+      <div class="cv-viewer__fallback" id="cv-fallback" role="alert" aria-hidden="true">
+        <p>Tu navegador no puede mostrar el PDF inline. Descárgalo directamente:</p>
+        <a
+          href="./assets/CV_Avila_Neciosup_Marco.pdf"
+          download="CV_Marco_Avila.pdf"
+          class="btn-download"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#ic-download"/></svg>
+          Descargar CV
+        </a>
+      </div>
+    </div>
+
+    <p class="cv-footer">
+      Portfolio de <a href="./index.html">Marco Avila</a> ·
+      Infraestructura Serverless en AWS · Desplegado con Terraform &amp; GitHub Actions
+    </p>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // Visitor counter — calls the API Gateway endpoint on page load.
+    // Replace COUNTER_API_URL with the value from `terraform output api_gateway_url`.
+    // =========================================================================
+    const COUNTER_API_URL = 'https://YOUR_API_ID.execute-api.eu-west-1.amazonaws.com/visits';
+
+    async function fetchVisitorCount() {
+      const badge  = document.getElementById('counter-badge');
+      const label  = document.getElementById('counter-label');
+
+      try {
+        const res  = await fetch(COUNTER_API_URL, { method: 'GET' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const count = data.visits ?? data.visit_count ?? '—';
+        label.textContent = `${count.toLocaleString('es-ES')} vista${count !== 1 ? 's' : ''}`;
+        badge.classList.add('is-loaded');
+      } catch {
+        label.textContent = 'visitas no disponibles';
+      }
+    }
+
+    fetchVisitorCount();
+
+    // =========================================================================
+    // iOS / Firefox PDF fallback detection
+    // If the iframe src fails to load within 2 s, we show the fallback download.
+    // =========================================================================
+    const iframe  = document.getElementById('cv-iframe');
+    const fallback = document.getElementById('cv-fallback');
+
+    // iOS Safari won't fire load on a PDF iframe; after a timeout assume failure.
+    const fallbackTimer = setTimeout(() => {
+      const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+      if (isIOS) showFallback();
+    }, 2000);
+
+    iframe.addEventListener('load', () => clearTimeout(fallbackTimer));
+
+    iframe.addEventListener('error', showFallback);
+
+    function showFallback() {
+      iframe.style.display = 'none';
+      fallback.style.display = 'flex';
+      fallback.setAttribute('aria-hidden', 'false');
+    }
+  </script>
+
+</body>
+</html>
