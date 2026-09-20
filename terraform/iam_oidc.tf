@@ -54,12 +54,9 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
     }
 
     condition {
-      # StringLike with a wildcard allows any branch/tag in the repo.
-      # Tighten to StringEquals + "repo:owner/repo:ref:refs/heads/main"
-      # in production to restrict deployments to a single protected branch.
-      test     = "StringLike"
+      test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:*/portfolio-web:*"]
+      values   = ["repo:MarcoAAvila/portfolio-web:ref:refs/heads/main"]
     }
   }
 }
