@@ -1,4 +1,4 @@
-name: Deploy Portfolio to AWS
+name: Deploy Portfolio a AWS
 
 on:
   push:
@@ -6,27 +6,27 @@ on:
       - main
     paths:
       - 'web/**'
+  workflow_dispatch: # Permite ejecutar el Action manualmente desde GitHub
 
-# id-token: write is required to request the OIDC JWT from GitHub's token endpoint.
 permissions:
-  id-token: write
+  id-token: write 
   contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Descargar el código del repositorio
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials (OIDC)
+      - name: Autenticarse en AWS con OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: arn:aws:iam::625738166197:role/portfolio-github-actions-deploy
           aws-region: eu-west-1
 
-      - name: Sync web assets to S3
-        run: aws s3 sync ./web/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+      - name: Subir archivos web a S3
+        run: aws s3 sync ./web/ s3://marcoaavila-portfolio-web --delete
 
-      - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      - name: Invalidar caché de CloudFront
+        run: aws cloudfront create-invalidation --distribution-id E3LAZND9ZIMTZK --paths "/*"
