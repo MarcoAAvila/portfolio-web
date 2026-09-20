@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       # in production to restrict deployments to a single protected branch.
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.github_repo_name}:*"]
+      values   = ["repo:*/portfolio-web:*"]
     }
   }
 }
@@ -70,7 +70,7 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
 
 resource "aws_iam_role" "github_actions_deploy" {
   name               = "portfolio-github-actions-deploy"
-  description        = "Deployment role for GitHub Actions — assumed via OIDC"
+  description        = "Deployment role for GitHub Actions - assumed via OIDC"
   assume_role_policy = data.aws_iam_policy_document.github_oidc_assume_role.json
   # 1 hour is sufficient for a typical deployment pipeline.
   max_session_duration = 3600
